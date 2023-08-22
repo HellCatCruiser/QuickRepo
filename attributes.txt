@@ -1,0 +1,188 @@
+leerling_id
+type = number
+ voornaam
+    type = text
+ achternaam
+    type = text
+tussenvoegsel
+    type = text
+adres
+    type = text
+postcode
+    type = text
+plaats
+    type = text
+stadsgebied
+type = picklist
+buurt
+type = picklist
+stadsdeel_huisadres
+type = picklist
+geboortedatum
+    type = date
+leeftijd2
+    type = formula
+geboorteplaats
+    type = text
+geslacht
+type = picklist
+land_herkomst_ouders
+type = picklist
+financiering
+type = picklist
+basisschool
+type = picklist
+leerkracht_bs
+type = picklist
+    description
+    type = tooltip
+ stadsdeel
+type = picklist
+ coordinator
+type = picklist
+ lichting
+type = picklist
+mentoraatsoort
+type = picklist
+ll_vo_school
+type = picklist
+leerkracht_vo
+type = picklist
+advies
+type = picklist
+brugklas
+type = picklist
+prioriteit
+type = picklist
+voordracht
+    type = date
+inschrijvingsdatum
+    type = date
+plaatsingsdatum
+    type = date
+tussenrapportage
+    type = date
+thuis
+    type = checkbox
+straat
+    type = checkbox
+persoon
+    type = checkbox
+aanleg
+    type = checkbox
+online
+    type = checkbox
+ll_cito
+    type = text
+entreetoets
+    type = text
+notities
+    type = richtext
+style, font-color, background-color, alignment, link, table, bullets-and-numbering, 
+capaciteitenonderzoek
+    type = checkbox
+capaciteitenonderzoek_resultaat
+    type = text
+afwijkend_stadsdeel
+    type = formula
+doorlooptijd_aanmelding
+type = number
+leerling_aanmelding
+type = picklist
+leerling_aanmelding_oud
+type = picklist
+leerling_inschrijving
+type = picklist
+lifescool
+    type = checkbox
+aanmelding_lifesc
+type = picklist
+inschrijving_lifescool_jongeren
+type = picklist
+ status
+type = picklist
+telefoon
+    type = text
+mobiel
+    type = text
+email
+    type = text
+naam_moeder
+    type = text
+telefoon_moeder
+    type = text
+mobiel_moeder
+    type = text
+email_moeder
+    type = text
+naam_vader
+    type = text
+telefoon_vader
+    type = text
+mobiel_vader
+    type = text
+email_vader
+    type = text
+telefoon_overig
+    type = text
+contact_overig
+    type = text
+mobiel_overig
+    type = text
+email_overig
+    type = text
+plain
+    type = plaintext
+intake_notities
+    type = richtext
+style, font-color, background-color, alignment, link, table, bullets-and-numbering, 
+kandidaat_mentor
+type = picklist
+signaal_voordracht1
+    type = checkbox
+toon_alleen_voordracht_velden
+    type = checkbox
+maand_voordracht_num
+type = number
+private = true
+maand_voordracht
+    type = text
+private = true
+adres_locatie
+    type = address
+     capture_coordinates = true
+     adjust_using_map = false
+     address_line_12
+       type = address_line_1
+     address_line_22
+       type = address_line_2
+     district_city2
+       type = district_city
+     state_province2
+       type = state_province
+     postal_code2
+       type = postal_code
+     country2
+       type = country
+     latitude2
+       type = latitude
+     longitude2
+       type = longitude
+laptop_geleend
+    type = checkbox
+aantal_mentoraten
+type = number
+leeftijd
+    type = formula
+
+actions
+on add
+submit
+   type = submit
+reset
+   type = reset
+on edit
+bewaar
+   type = submit
+annuleren
+   type = cancel

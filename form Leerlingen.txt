@@ -1,0 +1,792 @@
+form Leerlingen
+{
+	success message = "Gegevens zijn bewaard!"
+	field alignment = left
+	feature property = 32
+			hide = true
+	Section
+	(
+		type = section
+	 	row = 1
+	 	column = 0   
+		width = medium
+	)
+	Leerling_id
+	(
+		type = number
+	 	row = 1
+	 	column = 1   
+		width = 100px
+	)
+	must have Voornaam
+	(
+    	type = text
+	 	row = 1
+	 	column = 1   
+		width = 200px
+	)
+	must have Achternaam
+	(
+    	type = text
+	 	row = 1
+	 	column = 1   
+		width = 200px
+	)
+	Tussenvoegsel
+	(
+    	type = text
+		maxchar = 20
+	 	row = 1
+	 	column = 1   
+		width = 200px
+	)
+	Adres
+	(
+    	type = text
+		maxchar = 50
+	 	row = 1
+	 	column = 1   
+		width = 200px
+	)
+	Postcode
+	(
+    	type = text
+		maxchar = 10
+	 	row = 1
+	 	column = 1   
+		width = 200px
+	)
+	Plaats
+	(
+    	type = text
+		maxchar = 40
+	 	row = 1
+	 	column = 1   
+		width = 200px
+	)
+	Stadsgebied
+	(
+		type = picklist	
+		values  = Stadsgebieden.ID
+    	displayformat = [Stadsgebied]
+		sortorder = ascending
+	 	row = 1
+	 	column = 1   
+		width = medium
+	)
+	Buurt
+	(
+		type = picklist	
+		values  = Buurten.ID
+    	displayformat = [Buurt]
+		sortorder = ascending
+	 	row = 1
+	 	column = 1   
+		width = medium
+	)
+	Stadsdeel_huisadres
+	(
+		type = picklist	
+		displayname = "Stadsdeel huisadres"
+		values  = Stadsdelen.ID
+    	displayformat = [Stadsdeel]
+		searchable = true
+		sortorder = ascending
+	 	row = 1
+	 	column = 1   
+		width = 200px
+	)
+	Geboortedatum
+	(
+    	type = date
+		alloweddays = 0,1,2,3,4,5,6
+	 	row = 1
+	 	column = 1   
+		width = 130px
+	)
+	Leeftijd2
+	(
+    	type = formula
+		displayname = "Leeftijd"
+		value =  input.Geboortedatum.totalYears(today)
+		visibility = false
+	 	row = 1
+	 	column = 1   
+		width = medium
+	)
+	Geboorteplaats
+	(
+    	type = text
+		maxchar = 40
+	 	row = 1
+	 	column = 1   
+		width = 200px
+	)
+	Geslacht
+	(
+		type = picklist
+		values = {"m","v","x"}
+	 	row = 1
+	 	column = 1   
+		width = 80px
+	)
+	Land_herkomst_ouders
+	(
+		type = picklist	
+		displayname = "Land herkomst ouders"
+		values  = Landen.ID
+    	displayformat = [Land]
+		searchable = true
+		sortorder = ascending
+	 	row = 1
+	 	column = 1   
+		width = 206px
+	)
+	Financiering
+	(
+		type = picklist	
+		values  = Financieringen.ID
+    	displayformat = [F_Financiering]
+		searchable = true
+		sortorder = ascending
+	 	row = 1
+	 	column = 1   
+		width = 206px
+	)
+	Basisschool
+	(
+		type = picklist	
+		values  = Basisscholen.ID
+    	displayformat = [Naam_school]
+		searchable = true
+		sortorder = ascending
+	 	row = 1
+	 	column = 1   
+		width = 206px
+	)
+	Leerkracht_BS
+	(
+		type = picklist	
+		displayname = "Leerkracht BS"
+		values  = BS_Medewerkers[Basisschool == input.Basisschool].ID
+    	displayformat = [achternaam]
+		searchable = true
+		sortorder = ascending
+    	description
+    	[
+    		type = tooltip
+    	 	message = "((Basisschool==input.Basisschool))"
+    	]
+	 	row = 1
+	 	column = 1   
+		width = 200px
+	)
+	must have Stadsdeel
+	(
+		type = picklist	
+		values  = Stadsdelen.ID
+    	displayformat = [Stadsdeel]
+		searchable = true
+		sortorder = ascending
+	 	row = 1
+	 	column = 1   
+		width = 200px
+	)
+	must have Coordinator
+	(
+		type = picklist	
+		displayname = "Coördinator"
+		values  = Medewerkers[actief && Coordinator].ID
+    	displayformat = [Voornaam + " " + Achternaam]
+		searchable = true
+		sortorder = ascending
+	 	row = 1
+	 	column = 1   
+		width = 206px
+	)
+	must have Lichting
+	(
+		type = picklist	
+		values  = Lichtingen.ID
+    	displayformat = [Lichting]
+		searchable = true
+		sortorder = ascending
+	 	row = 1
+	 	column = 1   
+		width = 206px
+	)
+	Mentoraatsoort
+	(
+		type = picklist	
+		values  = Mentoraatsoorten.ID
+    	displayformat = [MS_Mentoraatsoort]
+		searchable = true
+		sortorder = ascending
+	 	row = 1
+	 	column = 1   
+		width = 206px
+	)
+	LL_VO_School
+	(
+		type = picklist	
+		displayname = "VO School"
+		values  = VO_Scholen.ID
+    	displayformat = [Naam_school]
+		searchable = true
+		sortorder = ascending
+	 	row = 1
+	 	column = 1   
+		width = 206px
+	)
+	Leerkracht_VO
+	(
+		type = picklist	
+		displayname = "Leerkracht VO"
+		values  = Medewerkers_VO_scholen[VO_School == input.LL_VO_School].ID
+    	displayformat = [achternaam + " " + voornaam]
+		searchable = true
+		sortorder = ascending
+	 	row = 1
+	 	column = 1   
+		width = 206px
+	)
+	Advies
+	(
+		type = picklist	
+		values  = VO_Schooltypen1.ID
+    	displayformat = [schooltype]
+		searchable = true
+		sortorder = ascending
+	 	row = 1
+	 	column = 1   
+		width = 206px
+	)
+	Brugklas
+	(
+		type = picklist	
+		values  = VO_Schooltypen1.ID
+    	displayformat = [schooltype]
+		searchable = true
+		sortorder = ascending
+	 	row = 1
+	 	column = 1   
+		width = 206px
+	)
+	Prioriteit
+	(
+		type = picklist
+		values = {"Laag","Midden","Hoog"}
+	 	row = 1
+	 	column = 1   
+		width = 206px
+	)
+	Voordracht
+	(
+    	type = date
+		displayname = "Voordrachtsdatum"
+		alloweddays = 0,1,2,3,4,5,6
+	 	row = 1
+	 	column = 1   
+		width = 130px
+	)
+	Inschrijvingsdatum
+	(
+    	type = date
+		alloweddays = 0,1,2,3,4,5,6
+	 	row = 1
+	 	column = 1   
+		width = 130px
+	)
+	Plaatsingsdatum
+	(
+    	type = date
+		alloweddays = 0,1,2,3,4,5,6
+	 	row = 1
+	 	column = 1   
+		width = 130px
+	)
+	Tussenrapportage
+	(
+    	type = date
+		alloweddays = 0,1,2,3,4,5,6
+	 	row = 1
+	 	column = 1   
+		width = 130px
+	)
+	Thuis
+	(
+    	type = checkbox
+		initial value = false
+	 	row = 1
+	 	column = 1   
+		width = medium
+	)
+	Straat
+	(
+    	type = checkbox
+		initial value = false
+	 	row = 1
+	 	column = 1   
+		width = medium
+	)
+	Persoon
+	(
+    	type = checkbox
+		initial value = false
+	 	row = 1
+	 	column = 1   
+		width = medium
+	)
+	Aanleg
+	(
+    	type = checkbox
+		initial value = false
+	 	row = 1
+	 	column = 1   
+		width = medium
+	)
+	online
+	(
+    	type = checkbox
+		initial value = false
+	 	row = 1
+	 	column = 1   
+		width = medium
+	)
+	LL_Cito
+	(
+    	type = text
+		displayname = "Cito"
+	 	row = 1
+	 	column = 1   
+		width = 200px
+	)
+	Entreetoets
+	(
+    	type = text
+	 	row = 1
+	 	column = 1   
+		width = 200px
+	)
+	Notities
+	(
+    	type = richtext
+		height = 200px
+		toolbar = enable
+		[
+			style, font-color, background-color, alignment, link, table, bullets-and-numbering, 
+			font-size : {1, 2, 3, 4, 5, 6, 7},
+			font-family : {"Serif", "Arimo", "Ptmono", "Heuristica", "OpenSans", "Tinos", "Lato", "DejaVuSans", "ComicNeue"}
+		]
+	 	row = 1
+	 	column = 1   
+		width = 506px
+	)
+	Capaciteitenonderzoek
+	(
+    	type = checkbox
+		initial value = false
+	 	row = 1
+	 	column = 1   
+		width = medium
+	)
+	Capaciteitenonderzoek_resultaat
+	(
+    	type = text
+		displayname = "Capaciteitenonderzoek resultaat"
+	 	row = 1
+	 	column = 1   
+		width = 200px
+	)
+	Afwijkend_stadsdeel
+	(
+    	type = formula
+		displayname = "Afwijkend stadsdeel"
+		value =  if(input.Stadsdeel_huisadres != input.Stadsdeel,"Ja","Nee")
+		visibility = true
+	 	row = 1
+	 	column = 1   
+		width = 200px
+	)
+	Doorlooptijd_aanmelding
+	(
+		type = number
+		displayname = "Doorlooptijd aanmelding"
+	 	row = 1
+	 	column = 1   
+		width = medium
+	)
+	Leerling_aanmelding
+	(
+		type = picklist	
+		displayname = "Leerling aanmelding"
+		values  = Leerling_aanmelding.ID
+    	displayformat = [Voornaam + " " + Tussenvoegsel + " " + Achternaam]
+		sortorder = ascending
+	 	row = 1
+	 	column = 1   
+		width = medium
+	)
+	Leerling_aanmelding_oud
+	(
+		type = picklist	
+		displayname = "Leerling aanmelding oud"
+		values  = Leerling_aanmelding_oud.ID
+    	displayformat = [Voornaam + " " + Tussenvoegsel + " " + Achternaam]
+		sortorder = ascending
+	 	row = 1
+	 	column = 1   
+		width = medium
+	)
+	Leerling_inschrijving
+	(
+		type = picklist	
+		displayname = "Leerling inschrijving"
+		values  = Leerling_inschrijving.ID
+    	displayformat = [Voornamen + " " + Tussenvoegsel + " " + Achternaam]
+		sortorder = ascending
+	 	row = 1
+	 	column = 1   
+		width = medium
+	)
+	Lifescool
+	(
+    	type = checkbox
+		initial value = false
+	 	row = 1
+	 	column = 1   
+		width = medium
+	)
+	Aanmelding_lifesc
+	(
+		type = picklist	
+		displayname = "Aanmelding lifescool"
+		values  = Aanmelding_coachingtraject_gemeente_Diemen.ID
+    	displayformat = [Datum_aanmelding]
+		sortorder = ascending
+	 	row = 1
+	 	column = 1   
+		width = medium
+	)
+	Inschrijving_lifescool_jongeren
+	(
+		type = picklist	
+		displayname = "Inschrijving lifescool jongeren"
+		values  = Inschrijving_lifescool_jongeren.ID
+    	displayformat = [Added_Time]
+		sortorder = ascending
+	 	row = 1
+	 	column = 1   
+		width = medium
+	)
+	must have Status
+	(
+		type = picklist
+		values = {"Voordracht","Actief","Vervolg","Pauze","Afgerond","Niet geplaatst","Historie"}
+		initial value = "Voordracht"
+	 	row = 1
+	 	column = 2   
+		width = 206px
+	)
+	Telefoon
+	(
+    	type = text
+	 	row = 1
+	 	column = 2   
+		width = 200px
+	)
+	Mobiel
+	(
+    	type = text
+	 	row = 1
+	 	column = 2   
+		width = 200px
+	)
+	Email
+	(
+    	type = text
+	 	row = 1
+	 	column = 2   
+		width = 200px
+	)
+	Naam_moeder
+	(
+    	type = text
+		displayname = "Naam moeder"
+	 	row = 1
+	 	column = 2   
+		width = 200px
+	)
+	Telefoon_moeder
+	(
+    	type = text
+		displayname = "Telefoon moeder"
+	 	row = 1
+	 	column = 2   
+		width = 200px
+	)
+	Mobiel_moeder
+	(
+    	type = text
+		displayname = "Mobiel moeder"
+	 	row = 1
+	 	column = 2   
+		width = 200px
+	)
+	Email_moeder
+	(
+    	type = text
+		displayname = "Email moeder"
+	 	row = 1
+	 	column = 2   
+		width = 200px
+	)
+	Naam_vader
+	(
+    	type = text
+		displayname = "Naam vader"
+	 	row = 1
+	 	column = 2   
+		width = 200px
+	)
+	Telefoon_vader
+	(
+    	type = text
+		displayname = "Telefoon vader"
+	 	row = 1
+	 	column = 2   
+		width = 200px
+	)
+	Mobiel_vader
+	(
+    	type = text
+		displayname = "Mobiel vader"
+	 	row = 1
+	 	column = 2   
+		width = 200px
+	)
+	Email_vader
+	(
+    	type = text
+		displayname = "Email vader"
+	 	row = 1
+	 	column = 2   
+		width = 200px
+	)
+	Telefoon_overig
+	(
+    	type = text
+		displayname = "Telefoon overig"
+	 	row = 1
+	 	column = 2   
+		width = 200px
+	)
+	Contact_overig
+	(
+    	type = text
+		displayname = "Contact overig"
+	 	row = 1
+	 	column = 2   
+		width = 200px
+	)
+	Mobiel_overig
+	(
+    	type = text
+		displayname = "Mobiel overig"
+	 	row = 1
+	 	column = 2   
+		width = 200px
+	)
+	Email_overig
+	(
+    	type = text
+		displayname = "Email overig"
+	 	row = 1
+	 	column = 2   
+		width = 200px
+	)
+	plain
+	(
+    	type = plaintext
+		value = "<span style=\"background-color: rgb(153, 204, 255)\"><font size=\"4\">VOORDRACHT</font></span>"
+	 	row = 1
+	 	column = 2   
+		width = medium
+	)
+	Intake_notities
+	(
+    	type = richtext
+		displayname = "Intake notities"
+		height = 201px
+		toolbar = enable
+		[
+			style, font-color, background-color, alignment, link, table, bullets-and-numbering, 
+			font-size : {1},
+			font-family : {"Serif", "Arimo", "Ptmono", "Heuristica", "OpenSans", "Tinos", "Lato", "DejaVuSans", "ComicNeue"}
+		]
+	 	row = 1
+	 	column = 2   
+		width = 505px
+	)
+	Kandidaat_mentor
+	(
+		type = picklist	
+		displayname = "Kandidaat mentor"
+		values  = Mentoren[Status == "Nieuw" || Status == "Vervolg" || Status == "Actief" || Status == "Gereserveerd" && MR_Pauze == false].ID
+    	displayformat = [Voornaam + " " + Tussenvoegsel + " " + Achternaam]
+		sortorder = ascending
+	 	row = 1
+	 	column = 2   
+		width = 200px
+	)
+	Signaal_voordracht1
+	(
+    	type = checkbox
+		displayname = "Signaal voordracht"
+		initial value = false
+	 	row = 1
+	 	column = 2   
+		width = medium
+	)
+	Toon_alleen_voordracht_velden
+	(
+    	type = checkbox
+		displayname = "Toon alleen voordracht velden"
+		initial value = false
+	 	row = 1
+	 	column = 2   
+		width = medium
+	)
+	Maand_voordracht_num
+	(
+		type = number
+		displayname = "Maand voordracht"
+		maxchar = 6
+		private = true
+	 	row = 1
+	 	column = 2   
+		width = medium
+	)
+	Maand_voordracht
+	(
+    	type = text
+		displayname = "Maand voordracht"
+		maxchar = 7
+		private = true
+	 	row = 1
+	 	column = 2   
+		width = medium
+	)
+	Adres_locatie
+	(
+    	type = address
+		displayname = "Adres"
+     	capture_coordinates = true
+     	adjust_using_map = false
+     	address_line_12
+     	(
+	     	  type = address_line_1
+	     	  displayname = "Adres 1"
+     	) 
+     	address_line_22
+     	(
+	     	  type = address_line_2
+	     	  displayname = "Adres 2"
+     	) 
+     	district_city2
+     	(
+	     	  type = district_city
+	     	  displayname = "Stad"
+     	) 
+     	state_province2
+     	(
+	     	  type = state_province
+	     	  displayname = "Provincie"
+	     	 visibility = false
+     	) 
+     	postal_Code2
+     	(
+	     	  type = postal_Code
+	     	  displayname = "Postcode"
+     	) 
+     	country2
+     	(
+	     	  type = country
+	     	  displayname = "Country"
+	     	 visibility = false
+     	) 
+     	latitude2
+     	(
+	     	  type = latitude
+	     	  displayname = "latitude"
+	     	 visibility = false
+     	) 
+     	longitude2
+     	(
+	     	  type = longitude
+	     	  displayname = "longitude"
+	     	 visibility = false
+     	) 
+	 	row = 1
+	 	column = 2   
+		width = medium
+		personal data = true
+	)
+	Laptop_Geleend
+	(
+    	type = checkbox
+		displayname = "Laptop geleend"
+		initial value = false
+	 	row = 1
+	 	column = 2   
+		width = medium
+	)
+	Aantal_mentoraten
+	(
+		type = number
+		displayname = "Aantal mentoraten"
+		initial value = 0
+	 	row = 1
+	 	column = 2   
+		width = medium
+	)
+	Leeftijd
+	(
+    	type = formula
+		value =  (zoho.currentdate - input.Geboortedatum)
+		visibility = true
+	 	row = 1
+	 	column = 2   
+		width = medium
+	)
+	
+	actions
+	{
+		on add
+		{
+			submit
+			(
+   				type = submit
+   				displayname = "Bewaar"
+			)
+			reset
+			(
+   				type = reset
+   				displayname = "Annuleren"
+			)
+		}
+		on edit
+		{
+			Bewaar
+			(
+   				type = submit
+   				displayname = "Bewaar"
+			)
+			Annuleren
+			(
+   				type = cancel
+   				displayname = "Annuleren"
+			)
+		}
+	}
+}
